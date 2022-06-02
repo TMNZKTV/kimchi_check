@@ -64,18 +64,18 @@ class User extends Resource
                 ->updateRules('nullable', Rules\Password::defaults()),
 
             // 31.05. Добавил Роль в панели создания юзера
-            Select::make('Role')
-                ->options([
-                    'stuff' => 'Stuff',
-                    'manager' => 'Manager',
-                    'head of department' => 'Head of Department',
-                    'CEO' => 'CEO'
-                ])
-                ->displayUsingLabels()
-                ->sortable()
-                // Убрал проверку
-                // ->rules('required', 'role', 'max:254')
-                // ->updateRules('unique:users,role,{{resourceId}}'),
+//            Select::make('Role')
+//                ->options([
+//                    'stuff' => 'Stuff',
+//                    'manager' => 'Manager',
+//                    'head of department' => 'Head of Department',
+//                    'CEO' => 'CEO'
+//                ])
+//                ->displayUsingLabels()
+//                ->sortable()
+//                // Убрал проверку
+//                // ->rules('required', 'role', 'max:254')
+//                // ->updateRules('unique:users,role,{{resourceId}}'),
         ];
     }
 
