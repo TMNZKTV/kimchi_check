@@ -2,23 +2,30 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
+    public static function label() {
+        return 'Пользователи';
+    }
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
     public static $model = \App\Models\User::class;
+
+    //6.06. Для разбивки ресурсов на группы, используй св-во $group;
+    public static $group = 'Админ';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -44,6 +51,8 @@ class User extends Resource
      */
     public function fields(NovaRequest $request)
     {
+        // 8.06. Отсюда не можем получить id, чтобы найти юзера
+        // dd($request);
         return [
             ID::make()->sortable(),
 
@@ -58,24 +67,35 @@ class User extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
 
+            // 2.06. Отображается поле, но пустое. Не знаю, как отобразить в нем роли юзера.
+            // Text::make('Role', User::find($request->id)?->roles()->all()->implode('name', ',')->get()),
+            // Text::make('Role', User::first()->roles()->get()),
+            // Text::make('Role', User::class->roles()),
+
+            // 2.06. Роли и права показываются в отдельном компоненте в детальной информации о юзере
+            // 9.06. MorphToMany - это Many-to-Many (Юзер имеет несколько ролей - роль принадлежит нескольким юзерам)
+            MorphToMany::make('Роли', 'Roles', Role::class),
+            MorphToMany::make('Права доступа', 'Permissions', Permission::class)
+
             // 31.05. Добавил Роль в панели создания юзера
-//            Select::make('Role')
-//                ->options([
-//                    'stuff' => 'Stuff',
-//                    'manager' => 'Manager',
-//                    'head of department' => 'Head of Department',
-//                    'CEO' => 'CEO'
-//                ])
-//                ->displayUsingLabels()
-//                ->sortable()
-//                // Убрал проверку
-//                // ->rules('required', 'role', 'max:254')
-//                // ->updateRules('unique:users,role,{{resourceId}}'),
+            // Select::make('Role')
+            //     ->options([
+            //         'stuff' => 'Stuff',
+            //         'manager' => 'Manager',
+            //         'head of department' => 'Head of Department',
+            //         'CEO' => 'CEO'
+            //     ])
+            //     ->displayUsingLabels()
+            //     ->sortable()
+            //     // Убрал проверку
+            //     // ->rules('required', 'role', 'max:254')
+            //     // ->updateRules('unique:users,role,{{resourceId}}'),
         ];
     }
 

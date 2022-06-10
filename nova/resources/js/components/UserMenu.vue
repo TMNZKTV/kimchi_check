@@ -50,6 +50,13 @@
           >
             {{ __('Logout') }}
           </DropdownMenuItem>
+
+          <DropdownMenuItem
+              as="button"
+              @click="attempt"
+          >
+            {{ __('Profile') }}
+          </DropdownMenuItem>
         </nav>
       </DropdownMenu>
     </template>

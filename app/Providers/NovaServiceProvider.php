@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Acme\WorkStructure\WorkStructure;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -66,7 +67,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new WorkStructure
+        ];
     }
 
     /**
@@ -77,5 +80,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         //
+    }
+
+    public function resources()
+    {
+        Nova::resourcesIn(app_path('Nova'));
     }
 }

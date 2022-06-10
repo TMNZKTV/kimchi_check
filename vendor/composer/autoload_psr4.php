@@ -101,4 +101,5 @@ return array(
     'Box\\Spout\\' => array($vendorDir . '/box/spout/src/Spout'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src'),
     'App\\' => array($baseDir . '/app'),
+    'Acme\\WorkStructure\\' => array($vendorDir . '/acme/work-structure/src'),
 );

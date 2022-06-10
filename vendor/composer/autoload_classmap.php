@@ -6,6 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Acme\\WorkStructure\\Http\\Middleware\\Authorize' => $vendorDir . '/acme/work-structure/src/Http/Middleware/Authorize.php',
+    'Acme\\WorkStructure\\ToolServiceProvider' => $vendorDir . '/acme/work-structure/src/ToolServiceProvider.php',
+    'Acme\\WorkStructure\\WorkStructure' => $vendorDir . '/acme/work-structure/src/WorkStructure.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
@@ -18,9 +21,14 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
+    'App\\Models\\Permission' => $baseDir . '/app/Models/Permission.php',
+    'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Nova\\Dashboards\\Main' => $baseDir . '/app/Nova/Dashboards/Main.php',
+    'App\\Nova\\Permission' => $baseDir . '/app/Nova/Permission.php',
     'App\\Nova\\Resource' => $baseDir . '/app/Nova/Resource.php',
+    'App\\Nova\\Role' => $baseDir . '/app/Nova/Role.php',
     'App\\Nova\\User' => $baseDir . '/app/Nova/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -303,7 +311,7 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
-    'Database\\Seeders\\RoleAndPermissionSeeder' => $baseDir . '/database/seeders/RoleAndPermissionSeeder.php',
+    'Database\\Seeders\\RolesAndPermissionsSeeder' => $baseDir . '/database/seeders/RolesAndPermissionsSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
     'DeepCopy\\Exception\\PropertyException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',

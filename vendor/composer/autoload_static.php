@@ -10,8 +10,8 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -187,6 +187,7 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Acme\\WorkStructure\\' => 19,
         ),
     );
 
@@ -577,6 +578,10 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Acme\\WorkStructure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/acme/work-structure/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -590,6 +595,9 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
     );
 
     public static $classMap = array (
+        'Acme\\WorkStructure\\Http\\Middleware\\Authorize' => __DIR__ . '/..' . '/acme/work-structure/src/Http/Middleware/Authorize.php',
+        'Acme\\WorkStructure\\ToolServiceProvider' => __DIR__ . '/..' . '/acme/work-structure/src/ToolServiceProvider.php',
+        'Acme\\WorkStructure\\WorkStructure' => __DIR__ . '/..' . '/acme/work-structure/src/WorkStructure.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -602,9 +610,14 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
+        'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
+        'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Nova\\Dashboards\\Main' => __DIR__ . '/../..' . '/app/Nova/Dashboards/Main.php',
+        'App\\Nova\\Permission' => __DIR__ . '/../..' . '/app/Nova/Permission.php',
         'App\\Nova\\Resource' => __DIR__ . '/../..' . '/app/Nova/Resource.php',
+        'App\\Nova\\Role' => __DIR__ . '/../..' . '/app/Nova/Role.php',
         'App\\Nova\\User' => __DIR__ . '/../..' . '/app/Nova/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -887,7 +900,7 @@ class ComposerStaticInita15d62de85406fcb5a180a6542680757
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
-        'Database\\Seeders\\RoleAndPermissionSeeder' => __DIR__ . '/../..' . '/database/seeders/RoleAndPermissionSeeder.php',
+        'Database\\Seeders\\RolesAndPermissionsSeeder' => __DIR__ . '/../..' . '/database/seeders/RolesAndPermissionsSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
