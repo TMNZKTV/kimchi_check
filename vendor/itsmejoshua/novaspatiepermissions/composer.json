@@ -1,0 +1,34 @@
+{
+    "name": "itsmejoshua/novaspatiepermissions",
+    "description": "Laravel Nova tool for managing spaties roles/permissions in laravel's nova package.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "spatie",
+        "permissions"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-permission": "^5.5",
+        "laravel/nova": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Itsmejoshua\\Novaspatiepermissions\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Itsmejoshua\\Novaspatiepermissions\\ToolServiceProvider",
+                "Itsmejoshua\\Novaspatiepermissions\\NovaSpatiePermissionsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

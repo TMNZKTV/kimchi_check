@@ -28,9 +28,8 @@ class WorkStructure extends Tool
      */
     public function menu(Request $request)
     {
-        // 10.06. Изменил название и икону в сайдбаре
         return MenuSection::make('Орг. структура')
             ->path('/work-structure')
-            ->icon('briefcase');
+            ->icon('server');
     }
 }

@@ -2,36 +2,31 @@
 
 namespace App\Nova;
 
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphToMany;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\BelongsToMany;
 
-
-class Role extends Resource
+class ProfilePage extends Resource
 {
     public static function label() {
-        return 'Роли';
+        return 'Профиль';
     }
+
+    public static $group = 'Основное';
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Role::class;
-
-    //6.06. Для разбивки ресурсов на группы, используй св-во $group;
-    public static $group = 'Админ';
-
+    public static $model = \App\Models\ProfilePage::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -52,11 +47,6 @@ class Role extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('name'),
-            // 9.06. MorphToMany = Many-to-Many. Роль имеет множество прав - право принадлежит нескольким ролям
-            MorphToMany::make('Permissions'),
-            // 9.06. Пока не разобрался, как настроить связь между ролями и юзерами
-            //MorphToMany::make('Users')
         ];
     }
 

@@ -25,7 +25,7 @@ class User extends Resource
     public static $model = \App\Models\User::class;
 
     //6.06. Для разбивки ресурсов на группы, используй св-во $group;
-    public static $group = 'Админ';
+    public static $group = 'Основное';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -80,9 +80,10 @@ class User extends Resource
 
             // 2.06. Роли и права показываются в отдельном компоненте в детальной информации о юзере
             // 9.06. MorphToMany - это Many-to-Many (Юзер имеет несколько ролей - роль принадлежит нескольким юзерам)
-            MorphToMany::make('Роли', 'Roles', Role::class),
-            MorphToMany::make('Права доступа', 'Permissions', Permission::class)
-
+            // MorphToMany::make('Роли', 'Roles', Role::class),
+            // MorphToMany::make('Права доступа', 'Permissions', Permission::class)
+            MorphToMany::make('Роли', 'roles', \Itsmejoshua\Novaspatiepermissions\Role::class),
+            MorphToMany::make('Права', 'permissions', \Itsmejoshua\Novaspatiepermissions\Permission::class),
             // 31.05. Добавил Роль в панели создания юзера
             // Select::make('Role')
             //     ->options([

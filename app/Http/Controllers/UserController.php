@@ -10,12 +10,16 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
         return User::all();
     }
+
+//    public function main() {
+//        return User::where('name', '=', 'Михаил Ан');
+//    }
 
     /**
      * Store a newly created resource in storage.

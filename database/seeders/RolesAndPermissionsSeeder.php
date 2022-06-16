@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -41,6 +42,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $waiter = Role::create(['guard_name' => 'web', 'name' => 'Официант']);
         $cook = Role::create(['guard_name' => 'web', 'name' => 'Повар']);
 
+        $allRoles = [$managerRole, $stuff, $kitchen, $host, $waiter, $cook ];
 
         // Создаем роль Супер Админа, который получит все права через Gate::before
         $superAdminRole = Role::create(['guard_name' => 'web', 'name' => 'Super Admin']);
@@ -51,6 +53,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole($superAdminRole);
+
+        $admin = \App\Models\User::factory()->create([
+            'name' => 'Михаил Ан',
+            'email' => 'mihail@an.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ])->assignRole($ceoRole);
 
 
         // Создаем CEO, присваиваем роль и даем конкретные права Юзеру (не роли)
@@ -65,7 +73,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Петр',
             'email' => 'pyotr@test.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'children'=> json_encode(User::where('role', '=', 'Менеджер'))
         ])->assignRole($managerRole);
         //->givePermissionTo('Create checklist', 'Update checklist', 'View checklist');
+
     }
 }

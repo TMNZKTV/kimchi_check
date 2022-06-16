@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c68558acf594221978ec4829c7701f785e11d5cf',
+        'reference' => 'eb0bcb6bfedb58ca501204e0f158d6224f511195',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,8 +11,8 @@
     ),
     'versions' => array(
         'acme/work-structure' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+            'pretty_version' => 'dev-laravel-nova-permission',
+            'version' => 'dev-laravel-nova-permission',
             'reference' => 'b18602c722360391e7a28fbfc9b3eda4a4316b21',
             'type' => 'library',
             'install_path' => __DIR__ . '/../acme/work-structure',
@@ -448,6 +448,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'itsmejoshua/novaspatiepermissions' => array(
+            'pretty_version' => 'v1.0.7',
+            'version' => '1.0.7.0',
+            'reference' => '6d665c310586627802a4dd03a36bfd45b05eef33',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../itsmejoshua/novaspatiepermissions',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -466,7 +475,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c68558acf594221978ec4829c7701f785e11d5cf',
+            'reference' => 'eb0bcb6bfedb58ca501204e0f158d6224f511195',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -545,9 +554,9 @@
             'dev_requirement' => false,
         ),
         'league/flysystem' => array(
-            'pretty_version' => '3.0.20',
-            'version' => '3.0.20.0',
-            'reference' => '42a2f47dcf39944e2aee1b660ee55ab6ef69b535',
+            'pretty_version' => '3.0.21',
+            'version' => '3.0.21.0',
+            'reference' => '8f1fcf9d2304ff77a006aa36dd2cb5f236999b12',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/flysystem',
             'aliases' => array(),

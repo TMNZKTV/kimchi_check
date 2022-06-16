@@ -62,6 +62,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      */
     public static $showColumnBorders = false;
 
+
     /**
      * The underlying model resource instance.
      *

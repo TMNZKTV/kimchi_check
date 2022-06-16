@@ -18,11 +18,11 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     // 8.06. Request по id может отдать нам необходимого юзера
-    public function store(Request $request, User $user)
-    {
-    }
-    // 8.06. Для работы с dependency injection нужен __construct (и в нем Репозитории, если есть)
-    public function __construct(FoodRepository $foodRepo, CustomFieldRepository $customFieldRepo, UploadRepository $uploadRepo)
-    {
-    }
+//    public function store(Request $request, User $user)
+//    {
+//    }
+//    // 8.06. Для работы с dependency injection нужен __construct (и в нем Репозитории, если есть)
+//    public function __construct(FoodRepository $foodRepo, CustomFieldRepository $customFieldRepo, UploadRepository $uploadRepo)
+//    {
+//    }
 }
