@@ -2,8 +2,8 @@
     "packages": [
         {
             "name": "acme/work-structure",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
+            "version": "dev-laravel-nova-permission",
+            "version_normalized": "dev-laravel-nova-permission",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/WorkStructure",
@@ -1994,6 +1994,59 @@
             "install-path": "../inertiajs/inertia-laravel"
         },
         {
+            "name": "itsmejoshua/novaspatiepermissions",
+            "version": "v1.0.7",
+            "version_normalized": "1.0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itsmejoshua/novaspatiepermissions.git",
+                "reference": "6d665c310586627802a4dd03a36bfd45b05eef33"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itsmejoshua/novaspatiepermissions/zipball/6d665c310586627802a4dd03a36bfd45b05eef33",
+                "reference": "6d665c310586627802a4dd03a36bfd45b05eef33",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^8.0",
+                "spatie/laravel-permission": "^5.5"
+            },
+            "time": "2022-05-16T01:34:26+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Itsmejoshua\\Novaspatiepermissions\\ToolServiceProvider",
+                        "Itsmejoshua\\Novaspatiepermissions\\NovaSpatiePermissionsServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Itsmejoshua\\Novaspatiepermissions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Nova tool for managing spaties roles/permissions in laravel's nova package.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "permissions",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/itsmejoshua/novaspatiepermissions/issues",
+                "source": "https://github.com/itsmejoshua/novaspatiepermissions/tree/v1.0.7"
+            },
+            "install-path": "../itsmejoshua/novaspatiepermissions"
+        },
+        {
             "name": "laravel/framework",
             "version": "v9.17.0",
             "version_normalized": "9.17.0.0",
@@ -2804,17 +2857,17 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.0.20",
-            "version_normalized": "3.0.20.0",
+            "version": "3.0.21",
+            "version_normalized": "3.0.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "42a2f47dcf39944e2aee1b660ee55ab6ef69b535"
+                "reference": "8f1fcf9d2304ff77a006aa36dd2cb5f236999b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/42a2f47dcf39944e2aee1b660ee55ab6ef69b535",
-                "reference": "42a2f47dcf39944e2aee1b660ee55ab6ef69b535",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8f1fcf9d2304ff77a006aa36dd2cb5f236999b12",
+                "reference": "8f1fcf9d2304ff77a006aa36dd2cb5f236999b12",
                 "shasum": ""
             },
             "require": {
@@ -2843,7 +2896,7 @@
                 "phpunit/phpunit": "^9.5.11",
                 "sabre/dav": "^4.3.1"
             },
-            "time": "2022-05-25T19:18:39+00:00",
+            "time": "2022-06-12T17:54:28+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2877,7 +2930,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.0.20"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.0.21"
             },
             "funding": [
                 {

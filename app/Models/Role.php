@@ -14,20 +14,19 @@ class Role extends Model
     protected $guarded = [];
 
     // 9.06. Переписал логику для правильной связи
-    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(
-            config('permission.models.permission'),
-            config('permission.table_names.role_has_permissions')
-        );
-    }
-
-//    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+//    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
 //    {
 //        return $this->belongsToMany(
-//            config('permission.models.user'),
-//            config('permission.table_names.model_has_roles')
+//            config('permission.models.permission'),
+//            config('permission.table_names.role_has_permissions')
 //        );
+//    }
+
+    // 16.06. Нужно настроить связь между Ролью и Юзерами, у которых есть эта роль
+//    public function users(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+//    {
+//        // Находит id ролей
+//        return $this->belongsToMany(User::class);
 //    }
 
 }

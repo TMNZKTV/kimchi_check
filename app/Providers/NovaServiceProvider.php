@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Acme\WorkStructure\WorkStructure;
+use Itsmejoshua\Novaspatiepermissions\Novaspatiepermissions;
+
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -68,6 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
+            Novaspatiepermissions::make(),
             new WorkStructure
         ];
     }
