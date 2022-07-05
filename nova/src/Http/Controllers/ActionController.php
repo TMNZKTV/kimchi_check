@@ -3,6 +3,7 @@
 namespace Laravel\Nova\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Laravel\Nova\Actions\ActionCollection;
 use Laravel\Nova\Http\Requests\ActionRequest;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -24,13 +25,23 @@ class ActionController extends Controller
             $request->findModel($resourceId) ?? $request->model()
         );
 
-        return response()->json([
+        return response()->json(with([
             'actions' => $this->availableActions($request, $resource),
             'pivotActions' => [
                 'name' => $request->pivotName(),
                 'actions' => $resource->availablePivotActions($request),
             ],
-        ]);
+        ], function ($payload) use ($resource, $request) {
+            $actionCounts = ($request->display !== 'detail' ? $payload['actions'] : $resource->resolveActions($request))->countsByTypeOnIndex();
+            $pivotActionCounts = ActionCollection::make($payload['pivotActions']['actions'])->countsByTypeOnIndex();
+
+            $payload['counts'] = [
+                'standalone' => $actionCounts['standalone'] + $pivotActionCounts['standalone'],
+                'resource' => $actionCounts['resource'] + $pivotActionCounts['resource'],
+            ];
+
+            return $payload;
+        }));
     }
 
     /**

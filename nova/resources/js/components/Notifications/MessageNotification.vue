@@ -79,7 +79,9 @@ export default {
     },
 
     handleDeleteClick() {
-      if (confirm('Are you sure you want to delete this notification?')) {
+      if (
+        confirm(this.__('Are you sure you want to delete this notification?'))
+      ) {
         this.$emit('delete-notification')
       }
     },

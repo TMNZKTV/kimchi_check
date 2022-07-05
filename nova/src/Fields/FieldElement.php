@@ -288,6 +288,22 @@ abstract class FieldElement extends Element
     }
 
     /**
+     * Specify that the element should only be shown on the preview modal.
+     *
+     * @return $this
+     */
+    public function onlyOnPreview()
+    {
+        $this->showOnIndex = false;
+        $this->showOnDetail = false;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+        $this->showOnPreview = true;
+
+        return $this;
+    }
+
+    /**
      * Specify that the element should be hidden from forms.
      *
      * @return $this

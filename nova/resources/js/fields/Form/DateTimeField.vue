@@ -80,13 +80,8 @@ export default {
         let isoDate = DateTime.fromISO(value, { zone: this.timezone })
 
         this.value = isoDate.setZone(Nova.config('timezone')).toString()
-        this.formattedDate = [
-          isoDate.toISODate(),
-          isoDate.toFormat(this.timeFormat),
-        ].join('T')
       } else {
         this.value = ''
-        this.formattedDate = ''
       }
 
       if (this.field) {

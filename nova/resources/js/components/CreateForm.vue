@@ -201,6 +201,7 @@ export default {
           params: {
             editing: true,
             editMode: 'create',
+            inline: this.shownViaNewRelationModal,
             fromResourceId: this.fromResourceId,
             viaResource: this.viaResource,
             viaResourceId: this.viaResourceId,

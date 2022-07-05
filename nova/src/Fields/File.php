@@ -32,7 +32,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * The callback that should be executed to store the file.
      *
-     * @var callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed
+     * @var callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed
      */
     public $storageCallback;
 
@@ -77,7 +77,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
      * @param  string  $name
      * @param  string|callable|null  $attribute
      * @param  string|null  $disk
-     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed)|null  $storageCallback
+     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed)|null  $storageCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $disk = null, $storageCallback = null)
@@ -108,7 +108,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Prepare the storage callback.
      *
-     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed)|null  $storageCallback
+     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed)|null  $storageCallback
      * @return void
      */
     protected function prepareStorageCallback($storageCallback)
@@ -193,7 +193,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Specify the callback that should be used to store the file.
      *
-     * @param  callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed  $storageCallback
+     * @param  callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed  $storageCallback
      * @return $this
      */
     public function store(callable $storageCallback)

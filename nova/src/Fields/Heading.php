@@ -7,6 +7,8 @@ namespace Laravel\Nova\Fields;
  */
 class Heading extends Field
 {
+    use SupportsDependentFields;
+
     /**
      * The field's component.
      *

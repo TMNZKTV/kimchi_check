@@ -279,6 +279,7 @@ export default {
         .then(response => {
           this.actions = response.data.actions
           this.pivotActions = response.data.pivotActions
+          this.resourceHasActions = response.data.counts.resource > 0
         })
         .catch(e => {
           if (e instanceof Cancel) {

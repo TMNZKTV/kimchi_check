@@ -60,7 +60,7 @@ class NotExactlyAttached implements Rule
                 return $field instanceof ResourceToolElement || $field->computed();
             })
             ->each(function ($field) use ($pivot) {
-                $pivot->setAttribute($field->attribute, $this->request->input($field->attribute));
+                $field->fill($this->request, $pivot, $field->attribute);
             });
 
         $attributes = $pivot->toArray();

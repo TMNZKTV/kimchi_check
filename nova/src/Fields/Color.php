@@ -4,6 +4,8 @@ namespace Laravel\Nova\Fields;
 
 class Color extends Field
 {
+    use SupportsDependentFields;
+
     /**
      * The field's component.
      *

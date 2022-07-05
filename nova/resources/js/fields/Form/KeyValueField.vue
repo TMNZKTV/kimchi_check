@@ -86,7 +86,7 @@ export default {
   data: () => ({ theData: [] }),
 
   mounted() {
-    this.theData = map(this.value || {}, (value, key) => ({
+    this.theData = map(Object.entries(this.value || {}), ([key, value]) => ({
       id: guid(),
       key: `${key}`,
       value,

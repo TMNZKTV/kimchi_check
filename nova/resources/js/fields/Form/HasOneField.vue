@@ -3,7 +3,7 @@
     <LoadingView :loading="loading">
       <template v-if="isEditing">
         <component
-          v-for="(field, index) in fields"
+          v-for="(field, index) in availableFields"
           :index="index"
           :key="index"
           :is="`form-${field.component}`"
@@ -46,6 +46,7 @@
 import each from 'lodash/each'
 import map from 'lodash/map'
 import tap from 'lodash/tap'
+import reject from 'lodash/reject'
 import {
   TogglesTrashed,
   PerformsSearches,
@@ -112,7 +113,7 @@ export default {
     fill(formData) {
       if (this.isEditing && this.isVisible) {
         let entries = tap(new FormData(), form => {
-          each(this.fields, field => {
+          each(this.availableFields, field => {
             field.fill(form)
           })
         })
@@ -165,6 +166,18 @@ export default {
           field.value = field.belongsToId
           field.readonly = true
           field.showCreateRelationButton = false
+          field.fill = () => {}
+        } else if (
+          field.resourceName === this.field.from.viaResource &&
+          field.relationshipType === 'morphTo' &&
+          (this.editMode === 'create' ||
+            field.morphToId == this.field.from.viaResourceId)
+        ) {
+          field.component = 'hidden-field'
+          field.value = field.morphToId
+          field.readonly = true
+          field.showCreateRelationButton = false
+          field.fill = () => {}
         }
 
         field.validationKey = `${this.field.attribute}.${field.validationKey}`
@@ -187,6 +200,18 @@ export default {
   },
 
   computed: {
+    availableFields() {
+      return reject(this.fields, field => {
+        return (
+          (['relationship-panel'].includes(field.component) &&
+            ['hasOne', 'morphOne'].includes(
+              field.fields[0].relationshipType
+            )) ||
+          field.readonly
+        )
+      })
+    },
+
     getFieldsEndpoint() {
       if (this.editMode === 'update') {
         return `/nova-api/${this.resourceName}/${this.resourceId}/update-fields`

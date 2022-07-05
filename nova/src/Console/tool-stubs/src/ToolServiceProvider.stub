@@ -5,6 +5,7 @@ namespace {{ namespace }};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Nova;
 use {{ namespace }}\Http\Middleware\Authorize;
 
@@ -37,7 +38,7 @@ class ToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(['nova', Authorize::class], '{{ name }}')
+        Nova::router(['nova', Authenticate::class, Authorize::class], '{{ name }}')
             ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])

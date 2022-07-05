@@ -47,7 +47,7 @@ class VaporFile extends Field implements StorableContract, DeletableContract, Do
     /**
      * The callback that should be executed to store the file.
      *
-     * @var callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed
+     * @var callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed
      */
     public $storageCallback;
 
@@ -70,7 +70,7 @@ class VaporFile extends Field implements StorableContract, DeletableContract, Do
      *
      * @param  string  $name
      * @param  string|null  $attribute
-     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed)|null  $storageCallback
+     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed)|null  $storageCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $storageCallback = null)
@@ -143,7 +143,7 @@ class VaporFile extends Field implements StorableContract, DeletableContract, Do
     /**
      * Prepare the storage callback.
      *
-     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, string, object, string):mixed)|null  $storageCallback
+     * @param  (callable(\Laravel\Nova\Http\Requests\NovaRequest, object, string, string, ?string, ?string):mixed)|null  $storageCallback
      * @return void
      */
     protected function prepareStorageCallback($storageCallback)

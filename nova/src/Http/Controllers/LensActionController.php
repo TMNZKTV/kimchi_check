@@ -3,6 +3,7 @@
 namespace Laravel\Nova\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Laravel\Nova\Actions\ActionCollection;
 use Laravel\Nova\Http\Requests\LensActionRequest;
 use Laravel\Nova\Http\Requests\LensRequest;
 
@@ -16,13 +17,26 @@ class LensActionController extends Controller
      */
     public function index(LensRequest $request)
     {
-        return response()->json([
-            'actions' => $request->lens()->availableActionsOnIndex($request),
+        $lens = $request->lens();
+
+        return response()->json(with([
+            'actions' => $lens->availableActionsOnIndex($request),
             'pivotActions' => [
                 'name' => $request->pivotName(),
-                'actions' => $request->lens()->availablePivotActions($request),
+                'actions' => $lens->availablePivotActions($request),
             ],
-        ]);
+            'counts' => $lens->resolveActions($request)->countsByTypeOnIndex(),
+        ], function ($payload) use ($lens, $request) {
+            $actionCounts = $lens->resolveActions($request)->countsByTypeOnIndex();
+            $pivotActionCounts = ActionCollection::make($payload['pivotActions']['actions'])->countsByTypeOnIndex();
+
+            $payload['counts'] = [
+                'standalone' => $actionCounts['standalone'] + $pivotActionCounts['standalone'],
+                'resource' => $actionCounts['resource'] + $pivotActionCounts['resource'],
+            ];
+
+            return $payload;
+        }));
     }
 
     /**

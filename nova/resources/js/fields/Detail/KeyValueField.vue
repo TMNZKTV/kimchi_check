@@ -36,10 +36,13 @@ export default {
   data: () => ({ theData: [] }),
 
   created() {
-    this.theData = map(this.field.value || {}, (value, key) => ({
-      key,
-      value,
-    }))
+    this.theData = map(
+      Object.entries(this.field.value || {}),
+      ([key, value]) => ({
+        key: `${key}`,
+        value,
+      })
+    )
   },
 }
 </script>

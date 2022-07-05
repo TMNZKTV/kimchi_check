@@ -13,7 +13,7 @@
           :id="currentField.uniqueKey"
           :dusk="field.attribute"
           :name="field.name"
-          :value="value"
+          :value="formattedDate"
           :class="errorClasses"
           :disabled="currentlyIsReadonly"
           @change="handleChange"
@@ -38,6 +38,10 @@ import { DependentFormField, HandlesValidationErrors } from '@/mixins'
 export default {
   mixins: [HandlesValidationErrors, DependentFormField],
 
+  data: () => ({
+    formattedDate: '',
+  }),
+
   methods: {
     /*
      * Set the initial value for the field
@@ -48,6 +52,8 @@ export default {
           this.currentField.value || this.value
         ).toISODate()
       }
+
+      this.formattedDate = this.value
     },
 
     /**

@@ -405,7 +405,11 @@ export default {
       this.handleProceedingToPreviousPage()
       this.allowLeavingForm()
 
-      return window.history.back()
+      if (window.history.length > 1) {
+        window.history.back()
+      } else {
+        Nova.visit('/')
+      }
     },
 
     /**

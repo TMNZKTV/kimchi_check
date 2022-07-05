@@ -52,12 +52,26 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->assignRole($superAdminRole);
+            'place_id' => 2,
+            'pid'=> null,
+            'stpid'=> null,
+            'tags' => null,
+            'description' => null,
+            'title' => null,
+            'img' => null
+         ])->assignRole($superAdminRole);
 
         $admin = \App\Models\User::factory()->create([
             'name' => 'Михаил Ан',
             'email' => 'mihail@an.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'place_id' => 2,
+            'pid'=> null,
+            'stpid'=> null,
+            'tags' => null,
+            'description' => null,
+            'title' => null,
+            'img' => null
         ])->assignRole($ceoRole);
 
 
@@ -66,16 +80,28 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Тумэн',
             'email' => 'ceo@example.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->assignRole($ceoRole)->givePermissionTo('Создать чек-лист', 'Обновить чек-лист', 'Просмотреть чек-лист', 'Удалить чек-лист');
+            'place_id' => 2,
+            'pid'=> null,
+            'stpid'=> null,
+            'tags' => null,
+            'description' => null,
+            'title' => null,
+            'img' => null
+        ])->assignRole($ceoRole);
 
         // Создаем Менеджера, присваиваем роль и даем конкретные права Юзеру (не роли)
         $user2 = \App\Models\User::factory()->create([
             'name' => 'Петр',
             'email' => 'pyotr@test.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'children'=> json_encode(User::where('role', '=', 'Менеджер'))
+            'place_id' => 2,
+            'pid'=> 6,
+            'stpid'=> null,
+            'tags' => null,
+            'description' => null,
+            'title' => null,
+            'img' => null
         ])->assignRole($managerRole);
         //->givePermissionTo('Create checklist', 'Update checklist', 'View checklist');
-
     }
 }

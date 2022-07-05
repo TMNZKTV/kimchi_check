@@ -2,11 +2,11 @@
   <div :class="`text-${field.textAlign}`">
     <Link
       @click.stop
-      v-if="hasValue && resource.authorizedToView"
+      v-if="hasValue && !isPivot && resource.authorizedToView"
       :href="$url(`/resources/${resourceName}/${field.value}`)"
       class="link-default"
     >
-      {{ field.pivotValue || field.value }}
+      {{ field.value }}
     </Link>
     <p v-else-if="hasValue">
       {{ field.pivotValue || field.value }}
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import isNil from 'lodash/isNil'
+
 export default {
   props: ['resource', 'resourceName', 'field'],
 
@@ -25,6 +27,10 @@ export default {
      */
     hasValue() {
       return this.field.value !== null
+    },
+
+    isPivot() {
+      return !isNil(this.field.pivotValue)
     },
   },
 }

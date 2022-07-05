@@ -21,9 +21,9 @@ class Dashboard extends Tool
         $dashboards = collect(Nova::availableDashboards($request));
 
         if ($dashboards->count() > 1) {
-            return MenuSection::make('Dashboards', $dashboards->map(function ($dashboard) {
-                if (method_exists($dashboard, 'menuItem')) {
-                    return $dashboard::make()->menuItem();
+            return MenuSection::make('Dashboards', $dashboards->map(function ($dashboard) use ($request) {
+                if (method_exists($dashboard, 'menu')) {
+                    return $dashboard::class::make()->menu($request);
                 }
 
                 return MenuItem::dashboard($dashboard);

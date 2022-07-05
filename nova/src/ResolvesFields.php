@@ -74,6 +74,23 @@ trait ResolvesFields
     }
 
     /**
+     * Return the count of preview fields available.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return int
+     */
+    public function previewFieldsCount(NovaRequest $request)
+    {
+        return $this->availableFields($request)
+            ->when($request->viaRelationship(), $this->fieldResolverCallback($request))
+            ->withoutResourceTools()
+            ->withoutListableFields()
+            ->filterForPreview($request, $this->resource)
+            ->authorized($request)
+            ->count();
+    }
+
+    /**
      * Resolve the deletable fields.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
@@ -381,11 +398,13 @@ trait ResolvesFields
      */
     protected function resolveFields(NovaRequest $request, Closure $filter = null)
     {
-        $fields = $this->resolveNonPivotFields($request);
+        $fields = $this->availableFields($request)->authorized($request);
 
         if (! is_null($filter)) {
             $fields = $filter($fields);
         }
+
+        $fields->resolve($this->resource);
 
         return $request->viaRelationship()
             ? $this->withPivotFields($request, $fields->all())
@@ -397,6 +416,8 @@ trait ResolvesFields
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return \Laravel\Nova\Fields\FieldCollection<int, \Laravel\Nova\Fields\Field>
+     *
+     * @deprecated 4.x
      */
     protected function resolveNonPivotFields(NovaRequest $request)
     {
@@ -636,6 +657,10 @@ trait ResolvesFields
      */
     protected function fieldsMethod(NovaRequest $request)
     {
+        if ($request->isInlineCreateRequest() && method_exists($this, 'fieldsForInlineCreate')) {
+            return 'fieldsForInlineCreate';
+        }
+
         if ($request->isResourceIndexRequest() && method_exists($this, 'fieldsForIndex')) {
             return 'fieldsForIndex';
         }

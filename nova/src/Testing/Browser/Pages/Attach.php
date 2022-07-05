@@ -64,7 +64,9 @@ class Attach extends Page
      */
     public function create(Browser $browser)
     {
-        $browser->click('@attach-button')->pause(750);
+        $browser->dismissToasted()
+            ->click('@attach-button')
+            ->pause(750);
     }
 
     /**
@@ -75,7 +77,9 @@ class Attach extends Page
      */
     public function createAndAttachAnother(Browser $browser)
     {
-        $browser->click('@attach-and-attach-another-button')->pause(750);
+        $browser->dismissToasted()
+            ->click('@attach-and-attach-another-button')
+            ->pause(750);
     }
 
     /**

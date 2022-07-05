@@ -16,7 +16,9 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class NovaRequest extends FormRequest
 {
-    use InteractsWithResources, InteractsWithRelatedResources, InteractsWithResourcesSelection;
+    use InteractsWithResources;
+    use InteractsWithRelatedResources;
+    use InteractsWithResourcesSelection;
 
     /**
      * Determine if this request is via a many-to-many relationship.
@@ -32,14 +34,24 @@ class NovaRequest extends FormRequest
     }
 
     /**
-     * Determine if this request is an attach or create request.
+     * Determine if this request is an inline create or attach request.
+     *
+     * @return bool
+     */
+    public function isInlineCreateRequest()
+    {
+        return $this->isCreateOrAttachRequest() && $this->inline === 'true';
+    }
+
+    /**
+     * Determine if this request is a create or attach request.
      *
      * @return bool
      */
     public function isCreateOrAttachRequest()
     {
         return $this instanceof ResourceCreateOrAttachRequest
-                    || ($this->editing && in_array($this->editMode, ['create', 'attach']));
+            || ($this->editing === 'true' && in_array($this->editMode, ['create', 'attach']));
     }
 
     /**
@@ -50,7 +62,7 @@ class NovaRequest extends FormRequest
     public function isUpdateOrUpdateAttachedRequest()
     {
         return $this instanceof ResourceUpdateOrUpdateAttachedRequest
-                   || ($this->editing && in_array($this->editMode, ['update', 'update-attached']));
+            || ($this->editing === 'true' && in_array($this->editMode, ['update', 'update-attached']));
     }
 
     /**

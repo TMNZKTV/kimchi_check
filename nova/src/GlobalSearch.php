@@ -86,7 +86,7 @@ class GlobalSearch
             'subTitle' => transform($resource->subtitle(), function ($subtitle) {
                 return (string) $subtitle;
             }),
-            'resourceId' => $model->getKey(),
+            'resourceId' => Util::safeInt($model->getKey()),
             'url' => url(Nova::url('/resources/'.$resourceClass::uriKey().'/'.$model->getKey())),
             'avatar' => $resource->resolveAvatarUrl($this->request),
             'rounded' => $resource->resolveIfAvatarShouldBeRounded($this->request),

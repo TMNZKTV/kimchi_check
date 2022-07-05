@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\Menu;
 
+use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
 use Laravel\Nova\AuthorizedToSee;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -17,6 +18,7 @@ class MenuSection implements JsonSerializable
     use AuthorizedToSee;
     use Makeable;
     use WithBadge;
+    use Macroable;
 
     /**
      * The menu's component.
@@ -88,6 +90,40 @@ class MenuSection implements JsonSerializable
             )->path('/dashboards/'.$dashboard->uriKey())
                 ->canSee(function ($request) use ($dashboard) {
                     return $dashboard->authorizedToSee($request);
+                });
+        });
+    }
+
+    /**
+     * Create a menu section from a resource class.
+     *
+     * @param  class-string<\Laravel\Nova\Resource>  $resourceClass
+     * @return static
+     */
+    public static function resource($resourceClass)
+    {
+        return static::make(
+            $resourceClass::label()
+        )->path('/resources/'.$resourceClass::uriKey())
+        ->canSee(function ($request) use ($resourceClass) {
+            return $resourceClass::availableForNavigation($request) && $resourceClass::authorizedToViewAny($request);
+        });
+    }
+
+    /**
+     * Create a menu section from a lens class.
+     *
+     * @param  class-string<\Laravel\Nova\Resource>  $resourceClass
+     * @param  class-string<\Laravel\Nova\Lenses\Lens>  $lensClass
+     * @return static
+     */
+    public static function lens($resourceClass, $lensClass)
+    {
+        return with(new $lensClass, function ($lens) use ($resourceClass) {
+            return static::make($lens->name())
+                ->path('/resources/'.$resourceClass::uriKey().'/lens/'.$lens->uriKey())
+                ->canSee(function ($request) use ($lens) {
+                    return $lens->authorizedToSee($request);
                 });
         });
     }

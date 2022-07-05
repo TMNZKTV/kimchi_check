@@ -446,5 +446,6 @@
   "There are no fields to display.": "There are no fields to display.",
   "Notifications": "Notifications",
   "Mark all as Read": "Mark all as Read",
-  "Copy to clipboard": "Copy to clipboard"
+  "Copy to clipboard": "Copy to clipboard",
+  "Are you sure you want to delete this notification?": "Are you sure you want to delete this notification?"
 }

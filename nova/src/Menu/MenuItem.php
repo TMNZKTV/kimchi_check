@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\Menu;
 
+use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use JsonSerializable;
 use Laravel\Nova\AuthorizedToSee;
@@ -17,6 +18,7 @@ class MenuItem implements JsonSerializable
     use AuthorizedToSee;
     use Makeable;
     use WithBadge;
+    use Macroable;
 
     /**
      * The menu's component.
@@ -80,7 +82,7 @@ class MenuItem implements JsonSerializable
     }
 
     /**
-     * Create a menu from resource class.
+     * Create a menu item from a resource class.
      *
      * @param  class-string<\Laravel\Nova\Resource>  $resourceClass
      * @return static
@@ -92,6 +94,24 @@ class MenuItem implements JsonSerializable
         )->path('/resources/'.$resourceClass::uriKey())
         ->canSee(function ($request) use ($resourceClass) {
             return $resourceClass::availableForNavigation($request) && $resourceClass::authorizedToViewAny($request);
+        });
+    }
+
+    /**
+     * Create a menu item from a lens class.
+     *
+     * @param  class-string<\Laravel\Nova\Resource>  $resourceClass
+     * @param  class-string<\Laravel\Nova\Lenses\Lens>  $lensClass
+     * @return static
+     */
+    public static function lens($resourceClass, $lensClass)
+    {
+        return with(new $lensClass, function ($lens) use ($resourceClass) {
+            return static::make($lens->name())
+                ->path('/resources/'.$resourceClass::uriKey().'/lens/'.$lens->uriKey())
+                ->canSee(function ($request) use ($lens) {
+                    return $lens->authorizedToSee($request);
+                });
         });
     }
 

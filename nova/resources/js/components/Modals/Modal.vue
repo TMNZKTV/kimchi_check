@@ -3,7 +3,7 @@
     <template v-if="show">
       <div
         v-bind="defaultAttributes"
-        class="modal fixed inset-0 z-50 overflow-x-hidden overflow-y-auto px-3 md:px-0 py-3 md:py-6"
+        class="modal fixed inset-0 z-[60] overflow-x-hidden overflow-y-auto px-3 md:px-0 py-3 md:py-6"
         :tabindex="tabIndex"
         :role="role"
         :data-modal-open="show"
@@ -19,7 +19,7 @@
       </div>
 
       <div
-        class="fixed inset-0 z-[45] bg-gray-500 dark:bg-gray-900 opacity-75"
+        class="fixed inset-0 z-[55] bg-gray-500 dark:bg-gray-900 opacity-75"
         dusk="modal-backdrop"
       />
     </template>

@@ -32,6 +32,12 @@
             v-bind="item.props"
             v-on="item.on"
           >
+            <span v-if="item.badge" class="mr-1">
+              <Badge :extra-classes="item.badge.typeClass">
+                {{ item.badge.value }}
+              </Badge>
+            </span>
+
             {{ item.name }}
           </component>
 
@@ -49,13 +55,6 @@
             @click="attempt"
           >
             {{ __('Logout') }}
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-              as="button"
-              @click="attempt"
-          >
-            {{ __('Profile') }}
           </DropdownMenuItem>
         </nav>
       </DropdownMenu>
@@ -127,9 +126,7 @@ export default {
     formattedItems() {
       return this.userMenu.map(i => {
         let method = i.method || 'GET'
-        let props = {
-          href: i.path,
-        }
+        let props = { href: i.path }
 
         if (i.external && method == 'GET') {
           return {
@@ -156,6 +153,7 @@ export default {
           external: i.external,
           name: i.name,
           on: {},
+          badge: i.badge,
         }
       })
     },

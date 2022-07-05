@@ -16,7 +16,7 @@ class DetailMetricController extends Controller
     public function __invoke(MetricRequest $request)
     {
         return response()->json([
-            'value' => $request->metric()->resolve($request),
+            'value' => $request->detailMetric()->resolve($request),
         ]);
     }
 }

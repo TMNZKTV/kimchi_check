@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProfilePage extends Model
 {
     use HasFactory;
+
+    public function current() {
+        return auth()->user();
+    }
 }

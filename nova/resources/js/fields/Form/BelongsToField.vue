@@ -358,7 +358,7 @@ export default {
       return {
         params: {
           current: this.selectedResourceId,
-          first: this.initializingWithExistingResource,
+          first: this.shouldLoadFirstResource,
           search: this.search,
           withTrashed: this.withTrashed,
           resourceId: this.resourceId,
@@ -377,6 +377,13 @@ export default {
     isLocked() {
       return Boolean(
         this.viaResource == this.field.resourceName && this.field.reverse
+      )
+    },
+
+    shouldLoadFirstResource() {
+      return (
+        this.initializingWithExistingResource ||
+        Boolean(this.currentlyIsReadonly && this.selectedResourceId)
       )
     },
 

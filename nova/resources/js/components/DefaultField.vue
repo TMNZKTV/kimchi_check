@@ -1,8 +1,8 @@
 <template>
   <FieldWrapper :stacked="field.stacked" v-if="field.visible">
     <div
-      class="px-8 mt-2 md:mt-0"
-      :class="field.stacked ? 'md:pt-5 w-full' : 'w-full md:w-1/5 md:py-5'"
+      class="px-6 md:px-8 mt-2 md:mt-0"
+      :class="field.stacked ? 'md:pt-2 w-full' : 'w-full md:w-1/5 md:py-5'"
     >
       <slot>
         <FormLabel
@@ -18,8 +18,12 @@
     </div>
 
     <div
-      class="mt-1 md:mt-0 pb-5 px-8"
-      :class="field.stacked ? 'md:pt-5 w-full' : 'w-full md:w-3/5 md:py-5'"
+      class="mt-1 md:mt-0 pb-5 px-6 md:px-8"
+      :class="{
+        'md:w-4/5': fullWidthContent,
+        'w-full md:w-3/5 md:py-5': !field.stacked,
+        'md:pt-2 w-full': field.stacked,
+      }"
     >
       <slot name="field" />
 

@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\Menu;
 
+use Illuminate\Support\Traits\Macroable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Makeable;
 
@@ -11,6 +12,7 @@ use Laravel\Nova\Makeable;
 class MenuGroup implements \JsonSerializable
 {
     use Makeable;
+    use Macroable;
 
     /**
      * The menu's component.

@@ -62,7 +62,9 @@ class UpdateAttached extends Page
      */
     public function update(Browser $browser)
     {
-        $browser->click('@update-button')->pause(750);
+        $browser->dismissToasted()
+            ->click('@update-button')
+            ->pause(750);
     }
 
     /**
@@ -73,7 +75,9 @@ class UpdateAttached extends Page
      */
     public function updateAndContinueEditing(Browser $browser)
     {
-        $browser->click('@update-and-continue-editing-button')->pause(750);
+        $browser->dismissToasted()
+            ->click('@update-and-continue-editing-button')
+            ->pause(750);
     }
 
     /**

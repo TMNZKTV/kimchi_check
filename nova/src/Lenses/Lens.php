@@ -79,6 +79,19 @@ abstract class Lens implements ArrayAccess, JsonSerializable, UrlRoutable
     }
 
     /**
+     * Set the resource of the lens.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $resource
+     * @return $this
+     */
+    public function setResource($resource)
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    /**
      * Get the displayable name of the lens.
      *
      * @return string

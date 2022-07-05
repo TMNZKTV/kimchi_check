@@ -42,7 +42,10 @@ class Number extends Text
         parent::__construct($name, $attribute, $resolveCallback);
 
         $this->textAlign(Field::RIGHT_ALIGN)
-            ->withMeta(['type' => 'number']);
+            ->withMeta(['type' => 'number'])
+            ->displayUsing(function ($value) {
+                return ! $this->isNullValue($value) ? (string) $value : null;
+            });
     }
 
     /**

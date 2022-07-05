@@ -108,12 +108,13 @@ export default {
   methods: {
     async attempt() {
       const { redirect } = await this.form.post(Nova.url('/login'))
+      let path = '/'
 
       if (redirect !== undefined && redirect !== null) {
-        window.location.href = redirect
+        path = { url: redirect, remote: true }
       }
 
-      Nova.visit('/')
+      Nova.visit(path)
     },
   },
 

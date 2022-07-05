@@ -8,45 +8,66 @@
       class="flex flex-col items-center justify-center  "
       style="min-height: 300px"
     >
-        <organization-chart :datasource="orgChart" class="table"></organization-chart>
+      <!-- <organization-chart :datasource="orgChart" class="table"></organization-chart>-->
+      <!-- 22.06. Добавил новый пакет Balkan OrgChart -->
+      <div id="tree" ref="tree">
+          <OrgChart @click="log"/>
+      </div>
     </Card>
   </div>
 </template>
 
 <script>
-import OrganizationChart from 'vue3-organization-chart'
-import 'vue3-organization-chart/dist/orgchart.css'
+import OrgChart from '@balkangraph/orgchart.js'
+
 export default {
-  data () {
+  data() {
     return {
-      orgChart: {}
+      nodes: []
     }
   },
 
   components: {
-    OrganizationChart
+    OrgChart
   },
 
-  mounted () {
-        Nova.request().get('/api/nova/work-structure')
+  methods: {
+    mytree: function(domEl, x) {
+      this.chart = new OrgChart (domEl, {
+        nodes: x,
+        scaleInitial:OrgChart.match.boundary,
+        mouseScrool: OrgChart.action.scroll,
+        nodeBinding: {
+          field_0: "name",
+          field_1: "title",
+          img_0: "img"
+        }
+      });
+    },
+  },
+
+  async mounted() {
+    await Nova.request().get('/api/nova/work-structure')
         .then(response => {
-          // На этом шаге находим Мишу, чтобы дальше работать от него
-          this.orgChart = response.data.find((user) => user.name === 'Михаил Ан')
-          // На этом шаге убираем Мишу из списка всех юзеров
-          const users = response.data.filter((user) => user.name !== 'Михаил Ан')
-          this.orgChart.children = [...users]
-          console.log(this.orgChart)
+          this.nodes = response.data;
+          this.mytree(this.$refs.tree, this.nodes)
         })
         .catch(error => { console.log(error.message)})
   }
 }
 </script>
 
-<style>
-.org-chart .table {
-  position: relative;
-  max-width: 100%;
-  border: none;
-  overflow: scroll;
+<style scoped>
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#tree {
+  width: 100%;
+  height: 100%;
 }
 </style>

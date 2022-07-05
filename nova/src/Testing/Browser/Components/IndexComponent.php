@@ -128,6 +128,38 @@ class IndexComponent extends Component
     }
 
     /**
+     * Select all the the resources on current page.
+     *
+     * @param  \Laravel\Dusk\Browser  $browser
+     * @return void
+     */
+    public function selectAllOnCurrentPage(Browser $browser)
+    {
+        $browser->click('[dusk="select-all-dropdown"]')
+                        ->elsewhereWhenAvailable('[dusk="select-all-button"]', function ($browser) {
+                            $browser->check('input[type="checkbox"]');
+                        })
+                        ->pause(250)
+                        ->closeCurrentDropdown();
+    }
+
+    /**
+     * Un-select all the the resources on current page.
+     *
+     * @param  \Laravel\Dusk\Browser  $browser
+     * @return void
+     */
+    public function unselectAllOnCurrentPage(Browser $browser)
+    {
+        $browser->click('[dusk="select-all-dropdown"]')
+                        ->elsewhereWhenAvailable('[dusk="select-all-button"]', function ($browser) {
+                            $browser->uncheck('input[type="checkbox"]');
+                        })
+                        ->pause(250)
+                        ->closeCurrentDropdown();
+    }
+
+    /**
      * Select all the matching resources.
      *
      * @param  \Laravel\Dusk\Browser  $browser
@@ -137,7 +169,23 @@ class IndexComponent extends Component
     {
         $browser->click('[dusk="select-all-dropdown"]')
                         ->elsewhereWhenAvailable('[dusk="select-all-matching-button"]', function ($browser) {
-                            $browser->click('input[type="checkbox"]');
+                            $browser->check('input[type="checkbox"]');
+                        })
+                        ->pause(250)
+                        ->closeCurrentDropdown();
+    }
+
+    /**
+     * Un-select all the matching resources.
+     *
+     * @param  \Laravel\Dusk\Browser  $browser
+     * @return void
+     */
+    public function unselectAllMatching(Browser $browser)
+    {
+        $browser->click('[dusk="select-all-dropdown"]')
+                        ->elsewhereWhenAvailable('[dusk="select-all-matching-button"]', function ($browser) {
+                            $browser->uncheck('input[type="checkbox"]');
                         })
                         ->pause(250)
                         ->closeCurrentDropdown();

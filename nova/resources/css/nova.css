@@ -1283,8 +1283,7 @@ trix-editor.disabled {
 ------------------------------------------------------------------------------*/
 .ico-button {
   @apply fill-gray-500 dark:fill-gray-400;
-  @apply hover:fill-gray-700 dark:hover:fill-gray-600;
-  @apply active:fill-gray-800 dark:hover:fill-gray-500;
+  @apply hover:fill-gray-700 dark:hover:fill-gray-600 active:fill-gray-800;
 }
 
 /* Utilities

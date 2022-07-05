@@ -33,7 +33,9 @@ class Create extends Page
      */
     public function create(Browser $browser)
     {
-        $browser->click('@create-button')->pause(500);
+        $browser->dismissToasted()
+            ->click('@create-button')
+            ->pause(500);
     }
 
     /**
@@ -44,7 +46,9 @@ class Create extends Page
      */
     public function createAndAddAnother(Browser $browser)
     {
-        $browser->click('@create-and-add-another-button')->pause(500);
+        $browser->dismissToasted()
+            ->click('@create-and-add-another-button')
+            ->pause(500);
     }
 
     /**

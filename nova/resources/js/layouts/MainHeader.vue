@@ -26,7 +26,7 @@
 
       <div class="flex flex-1 px-4 sm:px-8 lg:px-12">
         <GlobalSearch
-          class="relative z-10"
+          class="relative z-50"
           v-if="globalSearchEnabled"
           dusk="global-search-component"
         />
@@ -41,7 +41,7 @@
 
     <!-- Mobile Sidebar -->
     <div class="lg:hidden w-60" :class="{ hidden: !mainMenuShown }">
-      <div class="fixed inset-0 flex z-40">
+      <div class="fixed inset-0 flex z-50">
         <div class="fixed inset-0" aria-hidden="true">
           <div
             @click="toggleMainMenu"
@@ -80,7 +80,7 @@
           <div class="px-2 border-b border-gray-100 dark:border-gray-700">
             <Link
               :href="$url('/')"
-              class="h-12 px-2 rounded-lg flex items-center focus:ring focus:ring-inset focus:outline-none text-black"
+              class="text-gray-900 hover:text-gray-500 active:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 dark:active:text-gray-500 h-12 px-2 rounded-lg flex items-center focus:ring focus:ring-inset focus:outline-none"
               :aria-label="appName"
             >
               <AppLogo class="h-6" />

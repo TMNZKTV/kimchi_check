@@ -49,6 +49,7 @@ export default {
     loading: true,
     orderBy: '',
     orderByDirection: '',
+    resourceHasActions: false,
     resourceResponse: null,
     resourceResponseError: null,
     resources: [],
@@ -331,8 +332,25 @@ export default {
       )
     },
 
+    /**
+     * Determine if Select All and Select All Matching is checked.
+     */
     selectAllAndSelectAllMatchingChecked() {
-      return this.selectAllChecked && this.selectAllMatchingChecked
+      return (
+        this.selectAllChecked &&
+        (this.selectAllMatchingChecked ||
+          this.selectedResourcesMatchesTotalResourceCount)
+      )
+    },
+
+    /**
+     * Determine current selected resources is equals to total resource count.
+     */
+    selectedResourcesMatchesTotalResourceCount() {
+      return Boolean(
+        this.allMatchingResourceCount > 0 &&
+          this.selectedResources.length === this.allMatchingResourceCount
+      )
     },
 
     /**
@@ -462,7 +480,7 @@ export default {
       return (
         Boolean(this.hasResources && !this.viaHasOne) &&
         Boolean(
-          this.actionsAreAvailable ||
+          this.resourceHasActions ||
             this.authorizedToDeleteAnyResources ||
             this.canShowDeleteMenu
         )

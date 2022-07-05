@@ -3,12 +3,14 @@
 namespace App\Nova;
 
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -25,7 +27,7 @@ class User extends Resource
     public static $model = \App\Models\User::class;
 
     //6.06. Для разбивки ресурсов на группы, используй св-во $group;
-    public static $group = 'Основное';
+    // public static $group = 'Основное';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -63,15 +65,17 @@ class User extends Resource
                 ->rules('required', 'max:255'),
 
             Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->sortable(),
 
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
-                ->updateRules('nullable', Rules\Password::defaults()),
+                ->updateRules('nullable', Rules\Password::defaults())
+                ->hideFromIndex()
+                ->hideFromDetail(),
+
+            Text::make('Supervised by', 'pid')->hideFromIndex(),
+//            Select::make('Supervised by', 'pid')->options(User::all()->name->get()),
 
             // 2.06. Отображается поле, но пустое. Не знаю, как отобразить в нем роли юзера.
             // Text::make('Role', User::find($request->id)?->roles()->all()->implode('name', ',')->get()),
@@ -84,6 +88,10 @@ class User extends Resource
             // MorphToMany::make('Права доступа', 'Permissions', Permission::class)
             MorphToMany::make('Роли', 'roles', \Itsmejoshua\Novaspatiepermissions\Role::class),
             MorphToMany::make('Права', 'permissions', \Itsmejoshua\Novaspatiepermissions\Permission::class),
+
+            //22.06. Ставит поле Place в верхнюю карточку
+            BelongsTo::make('Place')->sortable()->nullable(),
+
             // 31.05. Добавил Роль в панели создания юзера
             // Select::make('Role')
             //     ->options([

@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 /**
- * @method static static make(\Illuminate\Database\Eloquent\Model|string $eloquent, array $classes)
+ * @method static static make(\Illuminate\Database\Eloquent\Model|string $eloquent, array|string $classes)
  */
 class Observable
 {

@@ -22,11 +22,26 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+    public function place() {
+        return $this->belongsTo(Place::class);
+    }
+
+//    public function mainBranch () {
+//        return $this->belongsTo(MainBranch::class);
+//    }
+
     protected $fillable = [
         'name',
         'email',
         'password',
-        'supervisor'
+        'supervisor',
+        'place_id',
+        'pid',
+        'stpid',
+        'tags' ,
+        'description',
+        'title' ,
+        'img',
     ];
 
     /**

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasDropdownItems">
+  <div v-if="shouldShowDropdown">
     <Dropdown>
       <span class="sr-only">{{ __('Resource Row Dropdown') }}</span>
       <DropdownTrigger
@@ -17,10 +17,10 @@
             :height="250"
             class="divide-y divide-gray-100 dark:divide-gray-800 divide-solid"
           >
-            <div class="py-1" v-if="canModifyResource">
+            <div class="py-1" v-if="userHasAnyOptions">
               <!-- Preview Resource Link -->
               <DropdownMenuItem
-                v-if="resource.authorizedToView"
+                v-if="shouldShowPreviewLink"
                 :data-testid="`${resource.id.value}-preview-button`"
                 :dusk="`${resource.id.value}-preview-button`"
                 as="button"
@@ -168,14 +168,18 @@ export default {
       return ''
     },
 
-    hasDropdownItems() {
-      return this.actions.length > 0 || this.canModifyResource
+    shouldShowDropdown() {
+      return this.actions.length > 0 || this.userHasAnyOptions
     },
 
-    canModifyResource() {
+    shouldShowPreviewLink() {
+      return this.resource.authorizedToView && this.resource.previewHasFields
+    },
+
+    userHasAnyOptions() {
       return (
-        this.resource.authorizedToView ||
         this.resource.authorizedToReplicate ||
+        this.shouldShowPreviewLink ||
         this.canBeImpersonated
       )
     },

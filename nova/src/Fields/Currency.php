@@ -95,7 +95,7 @@ class Currency extends Number
                     return $value;
                 }
 
-                return $this->toMoneyInstance($value)->getMinorAmount()->toInt();
+                return $this->toMoneyInstance($value)->getAmount()->toFloat();
             });
     }
 

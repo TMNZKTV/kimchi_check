@@ -62,7 +62,6 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      */
     public static $showColumnBorders = false;
 
-
     /**
      * The underlying model resource instance.
      *
@@ -281,7 +280,8 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
         }
 
         return static::$softDeletes[static::$model] = in_array(
-            SoftDeletes::class, class_uses_recursive(static::newModel())
+            SoftDeletes::class,
+            class_uses_recursive(static::newModel())
         );
     }
 
@@ -463,6 +463,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
             'authorizedToRestore' => static::softDeletes() && $this->authorizedToRestore($request),
             'authorizedToForceDelete' => static::softDeletes() && $this->authorizedToForceDelete($request),
             'authorizedToImpersonate' => $this->authorizedToImpersonate($request),
+            'previewHasFields' => $this->previewFieldsCount($request) > 0,
             'softDeletes' => static::softDeletes(),
             'softDeleted' => $this->isSoftDeleted(),
         ]);
@@ -515,7 +516,8 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     {
         if ($request->viaManyToMany()) {
             return $request->findParentResourceOrFail()->authorizedToAttach(
-                $request, $this->model()
+                $request,
+                $this->model()
             );
         }
 
@@ -532,7 +534,9 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     {
         if ($request->viaManyToMany()) {
             return $request->findParentResourceOrFail()->authorizedToDetach(
-                $request, $this->model(), $request->viaRelationship
+                $request,
+                $this->model(),
+                $request->viaRelationship
             );
         }
 

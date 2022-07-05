@@ -1,5 +1,5 @@
 <template>
-  <div :dusk="'dashboard-' + this.name">
+  <LoadingView :loading="loading" :dusk="'dashboard-' + this.name">
     <Head :title="label" />
 
     <Heading v-if="label && cards.length > 1" class="mb-3">{{
@@ -9,7 +9,7 @@
     <div v-if="shouldShowCards">
       <Cards v-if="cards.length > 0" :cards="cards" />
     </div>
-  </div>
+  </LoadingView>
 </template>
 
 <script>
@@ -22,7 +22,11 @@ export default {
     },
   },
 
-  data: () => ({ label: '', cards: [] }),
+  data: () => ({
+    loading: true,
+    label: '',
+    cards: [],
+  }),
 
   created() {
     this.fetchDashboard()
@@ -37,6 +41,7 @@ export default {
           params: this.extraCardParams,
         })
 
+        this.loading = false
         this.label = label
         this.cards = cards
       } catch (error) {

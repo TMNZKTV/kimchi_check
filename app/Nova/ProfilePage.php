@@ -8,11 +8,13 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ProfilePage extends Resource
 {
+    public static $displayInNavigation = false;
+
     public static function label() {
         return 'Профиль';
     }
 
-    public static $group = 'Основное';
+    //public static $group = 'Основное';
 
     /**
      * The model the resource corresponds to.

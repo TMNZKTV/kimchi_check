@@ -103,7 +103,7 @@
         <div
           v-show="showOverlay"
           @click="closeSearch"
-          class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"
+          class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75 z-[45]"
         />
       </teleport>
     </div>

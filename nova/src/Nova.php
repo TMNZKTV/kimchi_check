@@ -1020,12 +1020,11 @@ class Nova
     public static function checkLicenseValidity()
     {
         return true;
-        //31.05. Йа опасный хацкер
-        // return Cache::remember('nova_valid_license_key', 3600, function () {
-        //     return rescue(function () {
-        //         return static::checkLicense()->status() == 204;
-        //     }, false);
-        // });
+//        return Cache::remember('nova_valid_license_key', 3600, function () {
+//            return rescue(function () {
+//                return static::checkLicense()->status() == 204;
+//            }, false);
+//        });
     }
 
     /**

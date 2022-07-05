@@ -45,7 +45,7 @@
             <Badge
               v-if="resource.softDeleted"
               :label="__('Soft Deleted')"
-              class="bg-red-100 text-red-500 rounded px-2 py-0.5 ml-3"
+              class="bg-red-100 text-red-500 dark:bg-red-400 dark:text-red-900 rounded px-2 py-0.5 ml-3"
             />
           </div>
 

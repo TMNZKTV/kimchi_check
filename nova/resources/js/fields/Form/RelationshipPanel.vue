@@ -117,7 +117,7 @@ export default {
     },
 
     relationId() {
-      if (this.field.relationshipType === 'hasOne') {
+      if (['hasOne', 'morphOne'].includes(this.field.relationshipType)) {
         return this.field.hasOneId
       }
     },

@@ -63,9 +63,10 @@ class Update extends Page
      */
     public function update(Browser $browser)
     {
-        $browser->waitFor('@update-button')
-                ->click('@update-button')
-                ->pause(500);
+        $browser->dismissToasted()
+            ->waitFor('@update-button')
+            ->click('@update-button')
+            ->pause(500);
     }
 
     /**
@@ -78,9 +79,10 @@ class Update extends Page
      */
     public function updateAndContinueEditing(Browser $browser)
     {
-        $browser->waitFor('@update-and-continue-editing-button')
-                ->click('@update-and-continue-editing-button')
-                ->pause(500);
+        $browser->dismissToasted()
+            ->waitFor('@update-and-continue-editing-button')
+            ->click('@update-and-continue-editing-button')
+            ->pause(500);
     }
 
     /**
