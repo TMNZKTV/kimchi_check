@@ -11,6 +11,10 @@ class Role extends Model
 {
     use HasFactory, HasPermissions;
 
+//    public function sections() {
+//        return $this->hasMany(Section::class);
+//    }
+
     protected $guarded = [];
 
     // 9.06. Переписал логику для правильной связи

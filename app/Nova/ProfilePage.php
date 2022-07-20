@@ -14,8 +14,6 @@ class ProfilePage extends Resource
         return 'Профиль';
     }
 
-    //public static $group = 'Основное';
-
     /**
      * The model the resource corresponds to.
      *

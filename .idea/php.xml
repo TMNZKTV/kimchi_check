@@ -129,6 +129,12 @@
       <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
       <path value="$PROJECT_DIR$/vendor/acme/work-structure" />
       <path value="$PROJECT_DIR$/vendor/itsmejoshua/novaspatiepermissions" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/ksubileau/color-thief-php" />
+      <path value="$PROJECT_DIR$/vendor/mostafaznv/nova-video" />
+      <path value="$PROJECT_DIR$/vendor/mostafaznv/larupload" />
+      <path value="$PROJECT_DIR$/vendor/acme/analytics" />
+      <path value="$PROJECT_DIR$/vendor/murdercode/nova4-tinymce-editor" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

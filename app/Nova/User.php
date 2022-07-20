@@ -16,6 +16,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
+    public static $group = 'Основное';
+
     public static function label() {
         return 'Пользователи';
     }
@@ -74,20 +76,18 @@ class User extends Resource
                 ->hideFromIndex()
                 ->hideFromDetail(),
 
-            Text::make('Supervised by', 'pid')->hideFromIndex(),
-//            Select::make('Supervised by', 'pid')->options(User::all()->name->get()),
+            // 06.07.2022. Отображение имени супервайзера
+            Text::make('Supervised by', function () {
+                $parentId = $this->pid;
+                $user = User::where('id', '=', $parentId)->firstOrFail();
+                return $user->name;
+            })->hideFromIndex(),
 
-            // 2.06. Отображается поле, но пустое. Не знаю, как отобразить в нем роли юзера.
-            // Text::make('Role', User::find($request->id)?->roles()->all()->implode('name', ',')->get()),
-            // Text::make('Role', User::first()->roles()->get()),
-            // Text::make('Role', User::class->roles()),
 
-            // 2.06. Роли и права показываются в отдельном компоненте в детальной информации о юзере
-            // 9.06. MorphToMany - это Many-to-Many (Юзер имеет несколько ролей - роль принадлежит нескольким юзерам)
-            // MorphToMany::make('Роли', 'Roles', Role::class),
-            // MorphToMany::make('Права доступа', 'Permissions', Permission::class)
             MorphToMany::make('Роли', 'roles', \Itsmejoshua\Novaspatiepermissions\Role::class),
-            MorphToMany::make('Права', 'permissions', \Itsmejoshua\Novaspatiepermissions\Permission::class),
+
+            // 06.07.2022. Проверка Permissions должна быть от Roles, а не от Users
+            // MorphToMany::make('Права', 'permissions', \Itsmejoshua\Novaspatiepermissions\Permission::class),
 
             //22.06. Ставит поле Place в верхнюю карточку
             BelongsTo::make('Place')->sortable()->nullable(),

@@ -10,6 +10,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Place extends Resource
 {
+    public static $group = 'Основное';
+
     public static function label()
     {
         return 'Точки';
@@ -27,7 +29,7 @@ class Place extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -35,7 +37,7 @@ class Place extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -49,7 +51,7 @@ class Place extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Name')->sortable(),
-            HasMany::make('Users')
+            HasMany::make( 'Users')
         ];
     }
 

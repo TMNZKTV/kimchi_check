@@ -88,5 +88,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function resources()
     {
         Nova::resourcesIn(app_path('Nova'));
+
+        // 07.07.2022
+        // Customizing Resource Sorting in the Sidebar - Позже сделать перестановку ресурсов
     }
 }

@@ -134,6 +134,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/acme/work-structure" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/itsmejoshua/novaspatiepermissions" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imagine/imagine" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ksubileau/color-thief-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mostafaznv/nova-video" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mostafaznv/larupload" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/acme/analytics" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/murdercode/nova4-tinymce-editor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,0 +1,29 @@
+{
+    "name": "mostafaznv/nova-video",
+    "description": "Video Field for Laravel Nova",
+    "keywords": ["laravel", "nova", "video", "video field", "ffmpeg", "stream", "hls", "larupload", "upload video"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0.2",
+        "mostafaznv/larupload": "^0.2.0",
+        "laravel/nova": "^4.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mostafaznv\\NovaVideo\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mostafaznv\\NovaVideo\\VideoFieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

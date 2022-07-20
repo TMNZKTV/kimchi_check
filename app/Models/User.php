@@ -25,6 +25,9 @@ class User extends Authenticatable
     public function place() {
         return $this->belongsTo(Place::class);
     }
+    public function statistic() {
+        return $this->hasMany(Statistic::class);
+    }
 
 //    public function mainBranch () {
 //        return $this->belongsTo(MainBranch::class);
